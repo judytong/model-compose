@@ -1,0 +1,23 @@
+version: '2'
+services:
+  pedestrian_detection_demo:
+    command: 'python /dynamic_rest.py --rest_url http://pedestrian_detection --rest_port 8001 --model_name pedestrian_detection_hddl'
+    image: 'ccr.ccs.tencentyun.com/aiot-test/pedestrian_detection_demo:latest'
+    container_name: pedestrian_detection_demo
+    volumes:
+      - /var/tmp:/var/tmp
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    devices:
+      - /dev/video0:/dev/video0
+    networks:
+      - pedestriandetection_default
+    environment:
+      - DISPLAY=:0
+    labels:
+      com_mwp_conf_nginx: '[]'
+      com_mwp_conf_services: '{"function_ids":[],"google_function":false,"pub_sub":false,"mDNS":false,"secretList":[],"secret":false,"configList":[],"config":false}'
+      com_mwp_conf_storage: '{}'
+networks:
+  pedestriandetection_default:
+    external:
+      name: pedestriandetection_default 
