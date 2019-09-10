@@ -6,4 +6,4 @@ services:
     container_name: pedestrian_detection
     ports:
       - '8001:8001'
-      - '9001:9001
+      - '9001:9001'
