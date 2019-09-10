@@ -1,7 +1,7 @@
 version: '2'
 services:
   action_recognition:
-    command: /bin/bash -c "source /opt/intel/openvino/bin/setupvars.sh && /ie-serving-py/start_server.sh ie_serving model --model_path /opt/ml/action_recognition_hddl --model_name action_recognition_hddl --port 9001 --rest_port 8001"
+    command: /bin/bash -c "source /opt/intel/openvino/bin/setupvars.sh && /ie-serving-py/start_server.sh ie_serving config --config_path /opt/ml/config.json --port 9001 --rest_port 8001"
     image: 'ccr.ccs.tencentyun.com/aiot-test/action_recognition_hddl:latest'
     container_name: action_recognition
     volumes:
