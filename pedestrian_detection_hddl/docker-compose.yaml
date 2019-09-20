@@ -16,6 +16,7 @@ services:
     ports:
       - '8001:8001'
       - '9000:9000'
+    privileged: true
     environment:
       - DEVICE=HDDL
       - CPU_EXTENSION=/libcpu_extension_sse4.so
