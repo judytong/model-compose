@@ -13,9 +13,6 @@ services:
       com_mwp_conf_nginx: '[]'
       com_mwp_conf_services: '{"function_ids":[],"google_function":false,"pub_sub":false,"mDNS":false,"secretList":[],"secret":false,"configList":[],"config":false}'
       com_mwp_conf_storage: '{"usb":false}'
-    ports:
-      - '8001:8001'
-      - '9000:9000'
     privileged: true
     environment:
       - DEVICE=HDDL
