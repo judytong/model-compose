@@ -1,0 +1,22 @@
+version: '2'
+services:
+  pedestrian_detection:
+    command: /bin/bash -c "source /opt/intel/openvino/bin/setupvars.sh && /ie-serving-py/start_server.sh ie_serving model --model_path /opt/ml/pedestrian_detection_hddl --model_name pedestrian_detection_hddl --port 9001 --rest_port 8001"
+    image: 'ccr.ccs.tencentyun.com/aiot-test/pedestrian_detection_hddl:latest'
+    container_name: pedestrian_detection
+    volumes:
+      - /var/tmp:/var/tmp
+      - /dev:/dev
+    devices:
+      - /dev/ion:/dev/ion
+    labels:
+      com_mwp_conf_nginx: '[]'
+      com_mwp_conf_services: '{"function_ids":[],"google_function":false,"pub_sub":false,"mDNS":false,"secretList":[],"secret":false,"configList":[],"config":false}'
+      com_mwp_conf_storage: '{"usb":false}'
+    ports:
+      - '8001:8001'
+      - '9100:9000'
+    privileged: true
+    environment:
+      - DEVICE=HDDL
+      - CPU_EXTENSION=/libcpu_extension_sse4.so
