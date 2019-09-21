@@ -20,4 +20,4 @@ services:
 networks:
   pedestriandetection_default:
     external:
-      name: xingrenjiancemoxing_default 
+      name: pedestriandetection_default 
