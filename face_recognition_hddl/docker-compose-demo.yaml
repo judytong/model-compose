@@ -1,0 +1,18 @@
+version: '2'
+services:
+  face_recognition_demo:
+    command: python3 /faceid_deploy/faceid_restful_app_single/faceid_app.py --run_all --VideoMode 1 --DevicePath 0
+    image: 'ccr.ccs.tencentyun.com/aiot-test/vino-py3.6-flask'
+    container_name: face_recognition_demo
+    volumes:
+      - /home/hddl/Downloads/faceid_deploy/:/faceid_deploy
+      - /dev:/dev
+    devices:
+      - /dev/video0:/dev/video0
+    stdin_open: true
+    tty: true
+    privileged: true
+    environment:
+      - LD_LIBRARY_PATH=/opt/intel/openvino_2019.2.242/opencv/lib:/opt/intel/opencl:/opt/intel/openvino_2019.2.242/deployment_tools/inference_engine/external/hddl/lib:/opt/intel/openvino_2019.2.242/deployment_tools/inference_engine/external/gna/lib:/opt/intel/openvino_2019.2.242/deployment_tools/inference_engine/external/mkltiny_lnx/lib:/opt/intel/openvino_2019.2.242/deployment_tools/inference_engine/external/tbb/lib:/opt/intel/openvino_2019.2.242/deployment_tools/inference_engine/lib/intel64:/opt/intel/openvino_2019.2.242/openvx/lib
+      - PYTHONPATH=/opt/intel/openvino_2019.2.242/python/python3.6:/opt/intel/openvino_2019.2.242/python/python3:/opt/intel/openvino_2019.2.242/deployment_tools/model_optimizer:/faceid_deploy
+    network_mode: host
